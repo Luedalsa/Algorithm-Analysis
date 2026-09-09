@@ -8,16 +8,16 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from AlgorithmComparation.benchmark import ejecutar_pruebas
 
 
-def mostrar_grafica(frame_grafica, tamanios, tiempos_selection, tiempos_bubble):
+def mostrar_grafica(frame_grafica, tamanios, tiempos):
     for widget in frame_grafica.winfo_children():
         widget.destroy()
 
     figura, ax = plt.subplots(figsize=(9, 5))
-    ax.plot(tamanios, tiempos_selection, marker="o", label="Selection Sort")
-    ax.plot(tamanios, tiempos_bubble, marker="o", label="Bubble Sort")
+    for nombre, mediciones in tiempos.items():
+        ax.plot(tamanios, mediciones, marker="o", label=nombre)
     ax.set_xlabel("Tamaño de entrada (n)")
     ax.set_ylabel("Tiempo de ejecución (segundos)")
-    ax.set_title("Comparación: Selection Sort vs Bubble Sort")
+    ax.set_title("Comparación de algoritmos de ordenamiento")
     ax.legend()
     ax.grid(True)
     figura.tight_layout()
@@ -60,7 +60,7 @@ def crear_ventana():
 
     titulo = ttk.Label(
         frame_controles,
-        text="Comparación de Selection Sort y Bubble Sort",
+        text="Comparación de algoritmos de ordenamiento",
     )
     titulo.grid(row=0, column=0, columnspan=6, pady=(0, 15))
 
