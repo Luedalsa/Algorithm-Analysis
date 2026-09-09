@@ -5,7 +5,7 @@ from tkinter import messagebox, ttk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-from AlgorithmComparation.benchmark import ejecutar_pruebas
+from proyecto_ordenamiento.benchmark import ejecutar_pruebas
 
 
 def mostrar_grafica(frame_grafica, tamanios, tiempos):

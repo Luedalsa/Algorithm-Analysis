@@ -1,7 +1,7 @@
 import random
 import time
 
-from AlgorithmComparation.ordenamiento import (
+from proyecto_ordenamiento.ordenamiento import (
     bubble_sort_brute_force,
     exchange_sort,
     gnome_sort,
