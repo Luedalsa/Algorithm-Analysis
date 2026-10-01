@@ -1,11 +1,6 @@
 import threading
 import time
 import tracemalloc
-import tkinter as tk
-from tkinter import messagebox, ttk
-
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 try:
     from .fibonacci import fib, fibdyn
@@ -54,6 +49,11 @@ def ejecutar_pruebas(n_inicio, n_final, intervalo):
 
 
 def mostrar_graficas(frame_graficas, resultados):
+    import tkinter as tk
+
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
     for widget in frame_graficas.winfo_children():
         widget.destroy()
 
@@ -110,16 +110,21 @@ def ejecutar_en_hilo(
     intervalo,
 ):
     try:
+        from tkinter import messagebox
+
         resultados = ejecutar_pruebas(n_inicio, n_final, intervalo)
         ventana.after(0, lambda: mostrar_graficas(frame_graficas, resultados))
-        ventana.after(0, lambda: boton_ejecutar.config(state=tk.NORMAL))
+        ventana.after(0, lambda: boton_ejecutar.config(state="normal"))
         ventana.after(0, lambda: etiqueta_estado.config(text="Pruebas terminadas."))
     except Exception as error:
         ventana.after(0, lambda: messagebox.showerror("Error", str(error)))
-        ventana.after(0, lambda: boton_ejecutar.config(state=tk.NORMAL))
+        ventana.after(0, lambda: boton_ejecutar.config(state="normal"))
 
 
 def crear_ventana():
+    import tkinter as tk
+    from tkinter import messagebox, ttk
+
     ventana = tk.Tk()
     ventana.title("Análisis de Fibonacci")
     ventana.geometry("1200x700")
